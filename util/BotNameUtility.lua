@@ -236,12 +236,17 @@ function U.GetDota2Team()
 		end
 	end
 	local team = dota2team[rand];
-	for _, player in pairs(team.players) do
+	for i, player in pairs(team.players) do
+		if GetTeam() == TEAM_RADIANT and i == 1 then
+			table.insert(bot_names, "AI" .. "." .. "语糖" .. ".");
+			goto continue;
+		end
 		if team.sponsorship == "" then
 			table.insert(bot_names, team.alias .. "." .. player .. "." .. sponsorship[srand]);
 		else
 			table.insert(bot_names, team.alias .. "." .. player .. "." .. team.sponsorship);
 		end
+		::continue::
 	end
 	return bot_names;
 end
